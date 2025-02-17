@@ -1,6 +1,14 @@
 import Papa from 'papaparse';
 import { Participant, SkillType } from '@/types/participant';
 
+interface CSVRow {
+    Name: string;
+    Department: string;
+    Skills?: string;
+    'Is captain?': string;
+    'Email Address': string;
+}
+
 const determineSkillType = (skills: string): SkillType => {
     const skillsLower = skills.toLowerCase().trim();
     
@@ -80,9 +88,9 @@ export const parseCSV = async (file: File): Promise<Participant[]> => {
         Papa.parse(file, {
             header: true,
             complete: (results) => {
-                const participants = results.data
-                    .filter((row: any) => row.Name && row.Department)
-                    .map((row: any) => {
+                const participants = (results.data as CSVRow[])
+                    .filter((row) => row.Name && row.Department)
+                    .map((row) => {
                         const skills = row.Skills || '';
                         return {
                             name: row.Name,

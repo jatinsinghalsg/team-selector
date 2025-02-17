@@ -221,7 +221,7 @@ export default function TeamSelector({ participants }: Props) {
         {/* Right Section - Teams */}
         <div className="lg:w-2/5">
           <div className="grid grid-cols-1 gap-4">
-            {gameState.teams.map((team, index) => {
+            {gameState.teams.map((team) => {
               const skillCounts = getTeamSkillCounts(team);
               return (
                 <div

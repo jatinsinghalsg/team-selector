@@ -8,7 +8,7 @@ const TeamSelector = dynamic(() => import('@/components/TeamSelector'), { ssr: f
 
 export default function Home() {
   const [participants, setParticipants] = useState<Participant[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [, setIsLoading] = useState(false);
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files?.[0]) return;
